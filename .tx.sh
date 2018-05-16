@@ -30,7 +30,7 @@ token =" > ~/.transifexrc
 
 tx_push() {
   echo $USER
-  echo #HOSTNAME
+  echo $HOSTNAME
   # Only run once, and only on $TX_BRANCH branch
   echo $TRAVIS_JOB_NUMBER | grep "\.1$"
   if [ $? -eq 0 ] && [ $TRAVIS_BRANCH = $TX_BRANCH ]
