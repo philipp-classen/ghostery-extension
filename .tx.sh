@@ -10,7 +10,7 @@ git_setup() {
 
 commit_translation_files() {
   git checkout -b $TX_BRANCH
-  git add _locale/*
+  git add _locale
   git commit -m "Translation update from Transifex" -m "[ci skip]"
 }
 
@@ -54,6 +54,10 @@ tx_pull() {
       if [ $TX_COMMIT_TRANSLATIONS == true ]
         then
           echo "I AM HERE"
+          echo "TXTOKEN"
+          echo $TXTOKEN
+          echo "GHTOKEN"
+          echo $GHTOKEN
           git_setup
           commit_translation_files
           push_translation_files
