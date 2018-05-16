@@ -14,4 +14,4 @@ script:
   
 after_success:
   - chmod +x ./.tx.sh
-  - ./.tx.sh push
+  - ./.tx.sh pull
