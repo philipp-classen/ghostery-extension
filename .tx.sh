@@ -50,7 +50,8 @@ tx_pull() {
       tx_init
       tx pull --all --force
       FRESH_TRANSLATIONS=$(git diff-index --name-only HEAD --)
-      if [ $TX_COMMIT_TRANSLATIONS == true ] && [ -n $FRESH_TRANSLATIONS ]
+      # if [ $TX_COMMIT_TRANSLATIONS == true ] && [ -n $FRESH_TRANSLATIONS ]
+      # if [ $TX_COMMIT_TRANSLATIONS == true ]
         then
           git_setup
           commit_translation_files
