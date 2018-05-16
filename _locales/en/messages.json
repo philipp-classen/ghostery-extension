@@ -1,5 +1,5 @@
 {
-	"account_creation_privacy_statement": {
+	"account_creation_privacy_statement_": {
 		"message": "I consent to Ghostery's data practices found in its $LINK_PS_START$Privacy Statement$LINK_PS_END$ and the terms found in its $LINK_UA_START$License Agreement$LINK_UA_END$.",
 		"placeholders": {
 			"link_ps_end": {
