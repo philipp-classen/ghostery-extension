@@ -40,8 +40,7 @@ tx_push() {
 tx_pull() {
   # Only run once, and only for $TX_TAG tag
   echo $TRAVIS_JOB_NUMBER | grep "\.1$"
-  # if [ $? -eq 0 ] && [ $TRAVIS_TAG = $TX_TAG ]
-  if [ $? -eq 0 ] && [ $TRAVIS_BRANCH = $TX_BRANCH ]
+  if [ $? -eq 0 ] && [ $TRAVIS_TAG = $TX_TAG ]
     then
       tx_init
       tx pull --all --force
