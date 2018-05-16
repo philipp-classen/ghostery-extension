@@ -23,7 +23,7 @@ tx_init() {
 echo "[https://www.transifex.com]
 hostname = https://www.transifex.com
 username = api
-password = "1/4c6eb9e1679d8c93721aa6375a85ab4789214503"
+password = "1/ca7823370de3054bbe490acb5d2cecf8e73a4859"
 token =" > ~/.transifexrc
 }
 
