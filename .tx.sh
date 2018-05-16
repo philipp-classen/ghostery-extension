@@ -51,8 +51,9 @@ tx_pull() {
       tx pull --all --force
       FRESH_TRANSLATIONS=$(git diff-index --name-only HEAD --)
       # if [ $TX_COMMIT_TRANSLATIONS == true ] && [ -n $FRESH_TRANSLATIONS ]
-      # if [ $TX_COMMIT_TRANSLATIONS == true ]
+      if [ $TX_COMMIT_TRANSLATIONS == true ]
         then
+          echo "I AM HERE"
           git_setup
           commit_translation_files
           push_translation_files
