@@ -66,7 +66,7 @@ const { onMessage } = chrome.runtime;
 const {
 	CDN_BASE_URL, BROWSER_INFO, IS_CLIQZ
 } = globals;
-const IS_EDGE = (BROWSER_INFO.name === 'edge');
+const IS_EDGE = (BROWSER_INFO.name === 'edg'); // detects legacy ("Edge/...") and chromium-based Edge ("Edg/...")
 const IS_FIREFOX = (BROWSER_INFO.name === 'firefox');
 const IS_ANDROID = (BROWSER_INFO.os === 'android');
 const VERSION_CHECK_URL = `${CDN_BASE_URL}/update/v4.1/versions.json`;
