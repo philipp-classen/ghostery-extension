@@ -168,6 +168,9 @@ export async function updateEngines({ cache = true } = {}) {
       // Update TrackerDB engine
       trackerdb.setup.pending && (await trackerdb.setup.pending);
       const trackerdbUpdated = await engines.update(engines.TRACKERDB_ENGINE, { cache });
+      if (trackerdbUpdated) {
+        trackerdb.flushTrackerDBCache();
+      }
 
       if (__CHROMIUM__ && trackerdbUpdated) {
         // We need to reload DNR rules for exceptions if TrackerDB engine is updated,

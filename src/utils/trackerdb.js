@@ -82,6 +82,10 @@ function getTrackers() {
   return trackersMap;
 }
 
+export function flushTrackerDBCache() {
+  trackersMap.clear();
+}
+
 export async function getTracker(key) {
   setup.pending && (await setup.pending);
 
