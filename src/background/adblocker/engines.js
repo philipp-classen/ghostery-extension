@@ -52,12 +52,16 @@ function pause(ms) {
 }
 
 export async function reloadMainEngine() {
+  console.log('[adblocker][perf] reloadMainEngine() start');
+  const reloadStart = performance.now();
+
   // Delay the reload to avoid UI freezes in Firefox and Safari
   if (__FIREFOX__ || isWebkit()) await pause(1000);
 
   const options = await store.resolve(Options);
   const enabledEngines = getEnabledEngines(options);
 
+  const initStart = performance.now();
   const resolvedEngines = (
     await Promise.all(
       enabledEngines.map((id) =>
@@ -76,6 +80,10 @@ export async function reloadMainEngine() {
       ),
     )
   ).filter((engine) => engine);
+  const initElapsed = performance.now() - initStart;
+  console.log(
+    `[adblocker][perf] engines.init() for [${enabledEngines.join(', ')}] took ${initElapsed.toFixed(2)}ms`,
+  );
 
   if (resolvedEngines.length) {
     engines.replace(engines.MAIN_ENGINE, resolvedEngines);
@@ -89,6 +97,11 @@ export async function reloadMainEngine() {
   if (__FIREFOX__) {
     contentScripts.unregisterAll();
   }
+
+  const reloadElapsed = performance.now() - reloadStart;
+  console.log(
+    `[adblocker][perf] reloadMainEngine() total took ${reloadElapsed.toFixed(2)}ms`,
+  );
 }
 
 let updating = false;

@@ -414,14 +414,27 @@ export function replace(name, engineOrEngines) {
   const engines = [].concat(engineOrEngines);
   let engine;
 
+  console.log(
+    `[engines][perf] replace("${name}") called with ${engines.length} engine(s)`,
+  );
+  const replaceStart = performance.now();
+
   if (engines.length > 1) {
+    const mergeStart = performance.now();
     engine = FiltersEngine.merge(engines, {
       skipResources: true,
       overrideConfig: { enableCompression: false },
     });
+    const mergeElapsed = performance.now() - mergeStart;
+    console.log(
+      `[engines][perf] FiltersEngine.merge("${name}", ${engines.length} engines) took ${mergeElapsed.toFixed(2)}ms`,
+    );
     engine.resources = Resources.copy(engines[0].resources);
   } else {
     engine = engines[0];
+    console.log(
+      `[engines][perf] replace("${name}") skipped merge (single engine)`,
+    );
   }
 
   engine.updateEnv(ENV);
@@ -430,6 +443,11 @@ export function replace(name, engineOrEngines) {
   saveToStorage(name).catch(() => {
     console.error(`[engines] Failed to save engine "${name}" to storage`);
   });
+
+  const replaceElapsed = performance.now() - replaceStart;
+  console.log(
+    `[engines][perf] replace("${name}") total took ${replaceElapsed.toFixed(2)}ms`,
+  );
 
   return engine;
 }
